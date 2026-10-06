@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex media form</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function calcularMedia(){
+            var n1 = parseFloat(document.getElementById("nota1").value);
+            var n2 =parseFloat(document.getElementById("nota2").value);
+
+            //not n1 (!n1)-> nao tem nada 
+            if( (!n1) || (!n2) ){
+                //alert("Campos obrigatórios!");
+                Swal.fire({
+                    title: "Campos obrigatórios!",
+                    icon: "warning",
+                    draggable: true
+                }); 
+                return;
+            }
+
+            var media = (n1 + n2) / 2;
+            
+            var situacao = (media < 6) ? "Reprovado" : "Aprovado";
+
+            var icone = (media < 6) ? "error" : "success";
+
+            var msg = `Média: ${media} - Situação: ${situacao}`;
+
+            Swal.fire({
+                title: msg,
+                icon: icone,
+                draggable: true
+            });
+            //pegar do site: sweetalert 
+            //vai em Recipe Gallery pega o script e dps ve os coisinhos 
+        }
+    
+    </script>
+
+</head>
+<body>
+
+    <h1>Cálculo de Média</h1>
+    <hr>
+    <form>
+        Nota 1: <br><br>
+        <input type ="text" id="nota1">
+
+        <br><br>
+
+        Nota 2: <br>
+        <input type ="text" id="nota2">
+        <br><br>
+
+        <input type="button" value="Calcular" onclick="calcularMedia();">
+
+
+    </form>
+
+
+
+</body>
+</html>
